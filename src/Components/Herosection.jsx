@@ -180,7 +180,7 @@ const HeroSection = () => {
             </div>
 
             <img
-              src="../img.jpg"
+              src="/img.jpg"
               alt="developer"
               className="
             w-[280px]

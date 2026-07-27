@@ -37,7 +37,7 @@ const Navbar = () => {
        
           <div className="flex items-center gap-3">
             <img
-              src="../logo.jpg"
+              src="/logo.jpg"
               alt="logo"
               className="h-[50px] w-[50px] rounded-md"
             />
