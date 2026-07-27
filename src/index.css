@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes colorChange {
+  0% { color: #ff0000; }
+  10% { color: #ff7f00; }
+  20% { color: #ffff00; }
+  30% { color: #00ff00; }
+  40% { color: #00ffff; }
+  50% { color: #0000ff; }
+  60% { color: #8b5cf6; }
+  70% { color: #ff00ff; }
+  80% { color: #ff1493; }
+  90% { color: #ffffff; }
+  100% { color: #ff0000; }
+}
+
+.animate-logo {
+  animation: colorChange 10s infinite;
+}
+
+
+@keyframes movePortfolio {
+  0% { transform: translate(0, 0); }
+  25% { transform: translateY(-8px); }
+  50% { transform: translateY(8px); }
+  75% { transform: translateX(-8px); }
+  100% { transform: translateX(8px); }
+}
+
+.animate-portfolio {
+  animation: movePortfolio 4s infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
