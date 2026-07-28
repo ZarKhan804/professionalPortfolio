@@ -32,19 +32,42 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="h-[600px] flex items-center justify-center bg-slate-500 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8">
-        <h1 className="text-3xl font-bold text-center text-cyan-600">
+    <div
+      className="
+      min-h-screen
+      flex
+      items-center
+      justify-center
+      bg-slate-500
+      px-4
+      sm:px-6
+      lg:px-8
+      py-8
+      "
+    >
+      <div
+        className="
+        w-full
+        max-w-md
+        bg-white
+        rounded-2xl
+        shadow-2xl
+        p-5
+        sm:p-6
+        md:p-8
+        "
+      >
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-cyan-600">
           Reset Password
         </h1>
 
-        <p className="text-center text-gray-500 mt-2 mb-8">
+        <p className="text-center text-sm sm:text-base text-gray-500 mt-2 mb-6 sm:mb-8">
           Create a new secure password
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block mb-2 font-medium text-gray-700">
+            <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
               New Password
             </label>
 
@@ -54,13 +77,26 @@ const ResetPassword = () => {
               placeholder="Enter new password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+              className="
+              w-full
+              border
+              border-gray-300
+              rounded-lg
+              px-4
+              py-3
+              text-sm
+              sm:text-base
+              outline-none
+              focus:border-cyan-500
+              focus:ring-2
+              focus:ring-cyan-200
+              "
               required
             />
           </div>
 
           <div>
-            <label className="block mb-2 font-medium text-gray-700">
+            <label className="block mb-2 text-sm sm:text-base font-medium text-gray-700">
               Confirm Password
             </label>
 
@@ -70,14 +106,37 @@ const ResetPassword = () => {
               placeholder="Confirm new password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+              className=" w-full
+              border
+              border-gray-300
+              rounded-lg px-4
+              py-3F
+              text-sm
+              sm:text-base
+              outline-none
+              focus:border-cyan-500
+              focus:ring-2
+              focus:ring-cyan-200
+              "
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-lg font-semibold transition duration-300"
+            className="
+            w-full
+            bg-cyan-600
+            hover:bg-cyan-700
+            text-white
+            py-3
+            rounded-lg
+            font-semibold
+            text-sm
+            sm:text-base
+            transition
+            duration-300
+            "
           >
             Update Password
           </button>
