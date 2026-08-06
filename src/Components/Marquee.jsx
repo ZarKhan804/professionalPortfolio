@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { RxLinkedinLogo } from "react-icons/rx";
 import { FaInstagram } from "react-icons/fa";
@@ -6,12 +6,22 @@ import { IoLogoTiktok } from "react-icons/io5";
 import { FaYoutubeSquare } from "react-icons/fa";
 
 const Marquee = () => {
+  const [showFirst, setShowFirst] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowFirst((prev) => !prev);
+    }, 9000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-[#cfd5e0] py-3">
       <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-4">
 
-        {/* Left Marquee */}
-        <div className="w-full lg:w-1/3">
+        {/* Desktop Left Marquee */}
+        <div className="hidden lg:block w-full lg:w-1/3">
           <marquee
             scrollAmount="10"
             className="text-sm sm:text-base font-bold text-[#22D3EE]"
@@ -24,10 +34,36 @@ const Marquee = () => {
           </marquee>
         </div>
 
+        {/* Mobile Sequential Marquee */}
+        <div className="block lg:hidden w-full">
+          {showFirst ? (
+            <marquee
+              scrollAmount="10"
+              className="text-sm font-bold text-[#22D3EE]"
+            >
+              HTML5 &nbsp;&nbsp;&nbsp;&nbsp;
+              CSS3 &nbsp;&nbsp;&nbsp;&nbsp;
+              JavaScript (ES6+) &nbsp;&nbsp;&nbsp;&nbsp;
+              React.js &nbsp;&nbsp;&nbsp;&nbsp;
+              Git & GitHub
+            </marquee>
+          ) : (
+            <marquee
+              scrollAmount="10"
+              className="text-sm font-bold text-[#22D3EE]"
+            >
+              Node.js &nbsp;&nbsp;&nbsp;&nbsp;
+              Express.js &nbsp;&nbsp;&nbsp;&nbsp;
+              MongoDB &nbsp;&nbsp;&nbsp;&nbsp;
+              Mongoose &nbsp;&nbsp;&nbsp;&nbsp;
+              REST API Development
+            </marquee>
+          )}
+        </div>
+
         {/* Social Icons */}
         <div className="flex flex-wrap justify-center gap-4">
-
-          <a
+                    <a
             href="https://www.facebook.com/share/1Q4LPHunQt/"
             target="_blank"
             rel="noopener noreferrer"
@@ -71,11 +107,10 @@ const Marquee = () => {
           >
             <FaYoutubeSquare size={20} />
           </a>
-
         </div>
 
-        {/* Right Marquee */}
-        <div className="w-full lg:w-1/3">
+        {/* Desktop Right Marquee */}
+        <div className="hidden lg:block w-full lg:w-1/3">
           <marquee
             direction="left"
             scrollAmount="10"

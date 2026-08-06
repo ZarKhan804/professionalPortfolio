@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import {
@@ -81,6 +81,19 @@ const skills = [
 ];
 
 const Skill = () => {
+  const [activeSkill, setActiveSkill] = useState("React");
+
+  const cardRefs = useRef({});
+
+  const handleSkillClick = (skill) => {
+    setActiveSkill(skill);
+
+    cardRefs.current[skill]?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
+
   return (
     <section
       id="skills"
@@ -88,7 +101,6 @@ const Skill = () => {
     >
       <div className="max-w-[1600px] mx-auto px-6">
 
-       
         <div className="text-center">
 
           <h1 className="text-6xl font-bold text-cyan-500">
@@ -99,179 +111,207 @@ const Skill = () => {
             Browse portfolio skills designs for inspiration
           </p>
 
-          <div className="mt-8 flex justify-center items-center gap-4 flex-wrap">
+          <div className="mt-12 flex justify-center flex-wrap gap-4">
 
-            <span className="text-2xl text-gray-500">
-              Related:
-            </span>
+            {skills.map((skill, index) => (
 
-            {[
-              "Personal",
-              "Agency",
-              "Skill",
-              "Catalogue",
-              "Responsive",
-              "Photography",
-            ].map((item, index) => (
-              <motion.span
+              <motion.button
                 key={index}
-                whileHover={{
-                  scale: 1.08,
-                  y: -5,
-                }}
-                className="w-[140px] h-[50px]
-                border border-cyan-300
-                rounded-xl
-                bg-white
-                shadow-lg
-                flex items-center justify-center
-                text-lg
-                font-medium
-                text-[#0B0F2A]
-                hover:bg-cyan-500
-                hover:text-white
-                duration-300
-                cursor-pointer"
+                onClick={() => handleSkillClick(skill.name)}
+                whileHover={{ scale: 1.08, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-7 py-3 rounded-xl text-lg font-semibold transition-all duration-300 border shadow-lg
+
+                ${
+                  activeSkill === skill.name
+                    ? "bg-cyan-500 text-white border-cyan-500"
+                    : "bg-white text-[#0B1120] border-cyan-200 hover:bg-cyan-500 hover:text-white"
+                }`}
               >
-                {item}
-              </motion.span>
+                {skill.name}
+              </motion.button>
+
             ))}
 
           </div>
 
         </div>
 
-        <div className="mt-10 flex justify-center gap-5 flex-wrap">
-
-          {[
-            "Discover",
-            "Animation",
-            "Branding",
-            "Illustration",
-            "Mobile",
-            "Print",
-            "Product Design",
-          ].map((item, index) => (
-            <motion.span
-              key={index}
-              whileHover={{
-                scale: 1.08,
-                y: -5,
-              }}
-              className="px-8 py-3 rounded-lg
-              bg-[#0B1120]
-              text-white
-              text-lg
-              shadow-xl
-              hover:bg-cyan-500
-              duration-300
-              cursor-pointer"
-            >
-              {item}
-            </motion.span>
-          ))}
-
-        </div>
-
         <div className="mt-20 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                    {skills.map((skill, index) => (
 
-  {skills.map((skill, index) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.8,
-        delay: index * 0.1,
-      }}
-      whileHover={{
-        scale: 1.06,
-        rotateX: 12,
-        rotateY: -12,
-      }}
-      className="relative overflow-hidden rounded-3xl bg-[#0B1120] border border-cyan-400/20 p-8 group shadow-2xl"
-    >
-   
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500"
-        style={{
-          background: `radial-gradient(circle at center, ${skill.color}33, transparent 70%)`,
-        }}
-      />
+            <motion.div
+              key={index}
+              ref={(el) => (cardRefs.current[skill.name] = el)}
 
-   
-      <div className="relative flex justify-center">
+              initial={{
+                opacity: 0,
+                y: 80,
+              }}
 
-        <svg width="170" height="170">
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
 
-          <circle
-            cx="85"
-            cy="85"
-            r="68"
-            stroke="#1E293B"
-            strokeWidth="10"
-            fill="none"
-          />
+              viewport={{
+                once: true,
+              }}
 
-          <motion.circle
-            cx="85"
-            cy="85"
-            r="68"
-            stroke={skill.color}
-            strokeWidth="10"
-            fill="none"
-            strokeLinecap="round"
-            strokeDasharray="427"
-            initial={{
-              strokeDashoffset: 427,
-            }}
-            whileInView={{
-              strokeDashoffset:
-                427 - (427 * skill.value) / 100,
-            }}
-            transition={{
-              duration: 2,
-            }}
-            style={{
-              transform: "rotate(-90deg)",
-              transformOrigin: "50% 50%",
-            }}
-          />
+              transition={{
+                duration: 0.8,
+                delay: index * 0.08,
+              }}
 
-        </svg>
+              whileHover={{
+                scale: 1.05,
+                rotateX: 10,
+                rotateY: -10,
+              }}
 
+              animate={
+                activeSkill === skill.name
+                  ? {
+                      scale: 1.08,
+                      y: -10,
+                    }
+                  : {
+                      scale: 1,
+                      y: 0,
+                    }
+              }
 
-        <div
-          className="absolute top-14 text-6xl"
-          style={{
-            color: skill.color,
-          }}
-        >
-          {skill.icon}
+              className={`relative overflow-hidden rounded-3xl p-8 group shadow-2xl transition-all duration-500
+
+              ${
+                activeSkill === skill.name
+                  ? "bg-[#071221] border-2 border-cyan-400 shadow-cyan-400/50"
+                  : "bg-[#0B1120] border border-cyan-400/20"
+              }`}
+            >
+
+              {/* Glow */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500"
+                style={{
+                  background: `radial-gradient(circle at center, ${skill.color}33, transparent 70%)`,
+                }}
+              />
+
+              {/* Active Badge */}
+              {activeSkill === skill.name && (
+                <div className="absolute top-4 right-4 bg-cyan-500 text-white text-xs px-3 py-1 rounded-full">
+                  Active
+                </div>
+              )}
+
+              <div className="relative flex justify-center">
+
+                <svg width="170" height="170">
+
+                  <circle
+                    cx="85"
+                    cy="85"
+                    r="68"
+                    stroke="#1E293B"
+                    strokeWidth="10"
+                    fill="none"
+                  />
+
+                  <motion.circle
+                    cx="85"
+                    cy="85"
+                    r="68"
+                    stroke={skill.color}
+                    strokeWidth="10"
+                    fill="none"
+                    strokeLinecap="square"
+                    strokeDasharray="427"
+                    initial={{
+                      strokeDashoffset: 427,
+                    }}
+                    whileInView={{
+                      strokeDashoffset:
+                        427 - (427 * skill.value) / 100,
+                    }}
+                    transition={{
+                      duration: 2,
+                    }}
+                    style={{
+                      transform: "rotate(-90deg)",
+                      transformOrigin: "50% 50%",
+                    }}
+                  />
+
+                </svg>
+
+                <motion.div
+                  className="absolute top-14 text-6xl"
+                  style={{
+                    color: skill.color,
+                  }}
+                  animate={
+                    activeSkill === skill.name
+                      ? {
+                          scale: [1, 1.15, 1],
+                          rotate: [0, 8, -8, 0],
+                        }
+                      : {}
+                  }
+                  transition={{
+                    duration: 1.2,
+                    repeat:
+                      activeSkill === skill.name
+                        ? Infinity
+                        : 0,
+                  }}
+                >
+                  {skill.icon}
+                </motion.div>
+
+              </div>
+
+              <h2 className="mt-6 text-center text-white text-2xl font-bold">
+                {skill.name}
+              </h2>
+
+              <p
+                className="mt-3 text-center text-xl font-semibold"
+                style={{
+                  color: skill.color,
+                }}
+              >
+                {skill.value}%
+              </p>
+
+              <div className="mt-6 h-2 w-full rounded-full bg-slate-700 overflow-hidden">
+
+                <motion.div
+                  initial={{
+                    width: 0,
+                  }}
+                  whileInView={{
+                    width: `${skill.value}%`,
+                  }}
+                  transition={{
+                    duration: 1.5,
+                  }}
+                  className="h-full rounded-full"
+                  style={{
+                    background: skill.color,
+                  }}
+                />
+
+              </div>
+
+            </motion.div>
+
+          ))}
         </div>
+                </div>
 
-      </div>
+      
 
-      <h2 className="mt-6 text-center text-white text-2xl font-bold">
-        {skill.name}
-      </h2>
-
-    
-      <p
-        className="text-center mt-3 text-xl font-semibold"
-        style={{
-          color: skill.color,
-        }}
-      >
-        {skill.value}%
-      </p>
-
-    </motion.div>
-  ))}
-
-</div>
-      </div>
     </section>
   );
 };
