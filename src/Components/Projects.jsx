@@ -101,7 +101,7 @@ const Project = () => {
             </span>
           </motion.div>
 
-          <h1 className="mt-8 text-6xl lg:text-7xl font-black text-slate-900">
+          <h1 className="mt-8 text-6xl lg:text-6xl font-black text-slate-900">
             Latest Projects
           </h1>
 
@@ -111,121 +111,123 @@ const Project = () => {
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-20">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.15,
-              }}
-              whileHover={{
-                y: -15,
-                scale: 1.03,
-                rotateX: 5,
-                rotateY: -5,
-              }}
-              className="group relative overflow-hidden rounded-[30px] bg-white border border-cyan-200 shadow-xl hover:shadow-[0_25px_80px_rgba(34,211,238,.30)] transition-all duration-700"
-            >
-              {/* Animated Border */}
-              <motion.div
-                animate={{
-                  backgroundPosition: [
-                    "0% 50%",
-                    "100% 50%",
-                    "0% 50%",
-                  ],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute inset-0 rounded-[30px]"
-                style={{
-                  background:
-                    "linear-gradient(135deg,#22D3EE,#67E8F9,#A5F3FC,#22D3EE)",
-                  backgroundSize: "300% 300%",
-                  padding: "2px",
-                }}
-              >
-                <div className="w-full h-full rounded-[28px] bg-white" />
-              </motion.div>
+      {/* Cards */}
+{/* Cards */}
 
-              <div className="relative z-10">
-                {/* Image */}
-                <div className="overflow-hidden h-60">
-                  <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+<div className="flex flex-wrap justify-center gap-5 mt-16">
+  {projects.map((project, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.15,
+      }}
+      whileHover={{
+        y: -12,
+        scale: 1.02,
+        rotateX: 5,
+        rotateY: -5,
+      }}
+     className="group relative overflow-hidden rounded-[24px] bg-white border border-cyan-200 shadow-xl hover:shadow-[0_20px_60px_rgba(34,211,238,.25)] transition-all duration-700 w-[360px] flex-shrink-0"
+    >
+      {/* Animated Border */}
 
-                {/* Content */}
-                <div className="p-7">
-                  <span className="inline-block px-4 py-2 rounded-full bg-cyan-100 text-cyan-600 text-sm font-semibold">
-                    {project.category}
-                  </span>
+      <motion.div
+        animate={{
+          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute inset-0 rounded-[24px] "
+        style={{
+          background:
+            "linear-gradient(135deg,#22D3EE,#67E8F9,#A5F3FC,#22D3EE)",
+          backgroundSize: "300% 300%",
+          padding: "2px",
+        }}
+      />
 
-                  <h2 className="mt-5 text-3xl font-bold text-slate-900">
-                    {project.title}
-                  </h2>
+      <div className="relative z-10 bg-white rounded-[22px]">
+        {/* Image */}
 
-                  <p className="mt-4 text-slate-600 leading-7">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex gap-3 mt-6 flex-wrap">
-                    {project.tech.map((icon, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{
-                          rotate: 360,
-                          scale: 1.2,
-                        }}
-                        transition={{ duration: 0.5 }}
-                        className="w-11 h-11 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-xl shadow-md"
-                      >
-                        {icon}
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex gap-4 mt-8">
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      href={project.live}
-                      className="flex-1 py-3 rounded-xl bg-cyan-500 text-white flex items-center justify-center gap-2 font-semibold"
-                    >
-                      Live Demo
-                      <FaExternalLinkAlt />
-                    </motion.a>
-
-                    <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      href={project.github}
-                      className="w-14 rounded-xl border border-cyan-300 bg-white flex items-center justify-center text-cyan-600"
-                    >
-                      <FaGithub />
-                    </motion.a>
-                  </div>
-                </div>
-
-                {/* Glow */}
-                <div className="absolute -right-20 -bottom-20 w-56 h-56 rounded-full bg-cyan-300/20 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-              </div>
-            </motion.div>
-          ))}
+        <div className="overflow-hidden h-48 rounded-t-[22px]">
+          <motion.img
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6 }}
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
         </div>
+
+        {/* Content */}
+
+        <div className="p-5">
+          <span className="inline-block px-3 py-1.5 rounded-md bg-cyan-100 text-cyan-600 text-xs font-semibold">
+            {project.category}
+          </span>
+
+          <h2 className="mt-4 text-2xl font-bold text-slate-900">
+            {project.title}
+          </h2>
+
+          <p className="mt-3 text-sm text-slate-600 leading-6">
+            {project.description}
+          </p>
+
+          {/* Tech Stack */}
+
+          <div className="flex gap-2 mt-5 flex-wrap">
+            {project.tech.map((icon, i) => (
+              <motion.div
+                key={i}
+                whileHover={{
+                  rotate: 360,
+                  scale: 1.15,
+                }}
+                transition={{ duration: 0.5 }}
+                className="w-9 h-9 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg shadow-md"
+              >
+                {icon}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Buttons */}
+
+          <div className="flex gap-3 mt-6">
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              href={project.live}
+              className="flex-1 py-2.5 rounded-lg bg-cyan-500 text-white flex items-center justify-center gap-2 font-semibold text-sm"
+            >
+              Live Demo
+              <FaExternalLinkAlt />
+            </motion.a>
+
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              href={project.github}
+              className="w-11 rounded-lg border border-cyan-300 bg-white flex items-center justify-center text-cyan-600"
+            >
+              <FaGithub />
+            </motion.a>
+          </div>
+        </div>
+
+        {/* Glow */}
+
+        <div className="absolute -right-16 -bottom-16 w-40 h-40 rounded-full bg-cyan-300/20 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+      </div>
+    </motion.div>
+  ))}
+</div>
 
       </div>
     </section>
