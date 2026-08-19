@@ -231,6 +231,8 @@ const Register = () => {
               Register to continue
             </p>
 
+           
+
                         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <input
                 type="text"
@@ -325,6 +327,7 @@ const Register = () => {
               >
                 Register
               </button>
+
             </form>
 
             <p className="text-center mt-6 text-sm sm:text-base text-gray-600">

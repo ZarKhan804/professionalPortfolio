@@ -15,6 +15,8 @@ import {
   SiExpress,
   SiMongodb,
   SiTailwindcss,
+  SiTypescript,
+  SiNextdotjs,
 } from "react-icons/si";
 
 const skills = [
@@ -23,6 +25,18 @@ const skills = [
     icon: <FaReact />,
     color: "#61DBFB",
     value: 95,
+  },
+  {
+    name: "Next.js App Router",
+    icon: <SiNextdotjs />,
+    color: "#FFFFFF",
+    value: 90,
+  },
+  {
+    name: "TypeScript",
+    icon: <SiTypescript />,
+    color: "#3178C6",
+    value: 92,
   },
   {
     name: "Node JS",
@@ -101,6 +115,7 @@ const Skill = () => {
     >
       <div className="max-w-[1600px] mx-auto px-6">
 
+        {/* Heading */}
         <div className="text-center">
 
           <h1 className="text-6xl font-bold text-cyan-500">
@@ -111,6 +126,7 @@ const Skill = () => {
             Browse portfolio skills designs for inspiration
           </p>
 
+          {/* Skill Buttons */}
           <div className="mt-12 flex justify-center flex-wrap gap-4">
 
             {skills.map((skill, index) => (
@@ -137,8 +153,10 @@ const Skill = () => {
 
         </div>
 
+        {/* Skill Cards */}
         <div className="mt-20 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-                    {skills.map((skill, index) => (
+
+          {skills.map((skill, index) => (
 
             <motion.div
               key={index}
@@ -190,7 +208,7 @@ const Skill = () => {
               }`}
             >
 
-              {/* Glow */}
+              {/* Glow Effect */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500"
                 style={{
@@ -205,6 +223,7 @@ const Skill = () => {
                 </div>
               )}
 
+              {/* Circular Progress */}
               <div className="relative flex justify-center">
 
                 <svg width="170" height="170">
@@ -227,16 +246,20 @@ const Skill = () => {
                     fill="none"
                     strokeLinecap="square"
                     strokeDasharray="427"
+
                     initial={{
                       strokeDashoffset: 427,
                     }}
+
                     whileInView={{
                       strokeDashoffset:
                         427 - (427 * skill.value) / 100,
                     }}
+
                     transition={{
                       duration: 2,
                     }}
+
                     style={{
                       transform: "rotate(-90deg)",
                       transformOrigin: "50% 50%",
@@ -245,11 +268,13 @@ const Skill = () => {
 
                 </svg>
 
+                {/* Skill Icon */}
                 <motion.div
                   className="absolute top-14 text-6xl"
                   style={{
                     color: skill.color,
                   }}
+
                   animate={
                     activeSkill === skill.name
                       ? {
@@ -258,6 +283,7 @@ const Skill = () => {
                         }
                       : {}
                   }
+
                   transition={{
                     duration: 1.2,
                     repeat:
@@ -271,10 +297,12 @@ const Skill = () => {
 
               </div>
 
+              {/* Skill Name */}
               <h2 className="mt-6 text-center text-white text-2xl font-bold">
                 {skill.name}
               </h2>
 
+              {/* Percentage */}
               <p
                 className="mt-3 text-center text-xl font-semibold"
                 style={{
@@ -284,19 +312,24 @@ const Skill = () => {
                 {skill.value}%
               </p>
 
+              {/* Progress Bar */}
               <div className="mt-6 h-2 w-full rounded-full bg-slate-700 overflow-hidden">
 
                 <motion.div
                   initial={{
                     width: 0,
                   }}
+
                   whileInView={{
                     width: `${skill.value}%`,
                   }}
+
                   transition={{
                     duration: 1.5,
                   }}
+
                   className="h-full rounded-full"
+
                   style={{
                     background: skill.color,
                   }}
@@ -307,11 +340,10 @@ const Skill = () => {
             </motion.div>
 
           ))}
+
         </div>
-                </div>
 
-      
-
+      </div>
     </section>
   );
 };

@@ -29,6 +29,7 @@ const Marquee = () => {
             HTML5 &nbsp;&nbsp;&nbsp;&nbsp;
             CSS3 &nbsp;&nbsp;&nbsp;&nbsp;
             JavaScript (ES6+) &nbsp;&nbsp;&nbsp;&nbsp;
+            TypeScript &nbsp;&nbsp;&nbsp;&nbsp;
             React.js &nbsp;&nbsp;&nbsp;&nbsp;
             Git & GitHub
           </marquee>
@@ -44,6 +45,7 @@ const Marquee = () => {
               HTML5 &nbsp;&nbsp;&nbsp;&nbsp;
               CSS3 &nbsp;&nbsp;&nbsp;&nbsp;
               JavaScript (ES6+) &nbsp;&nbsp;&nbsp;&nbsp;
+              TypeScript &nbsp;&nbsp;&nbsp;&nbsp;
               React.js &nbsp;&nbsp;&nbsp;&nbsp;
               Git & GitHub
             </marquee>
@@ -56,6 +58,8 @@ const Marquee = () => {
               Express.js &nbsp;&nbsp;&nbsp;&nbsp;
               MongoDB &nbsp;&nbsp;&nbsp;&nbsp;
               Mongoose &nbsp;&nbsp;&nbsp;&nbsp;
+              TypeScript &nbsp;&nbsp;&nbsp;&nbsp;
+              Next.js App Router &nbsp;&nbsp;&nbsp;&nbsp;
               REST API Development
             </marquee>
           )}
@@ -63,7 +67,8 @@ const Marquee = () => {
 
         {/* Social Icons */}
         <div className="flex flex-wrap justify-center gap-4">
-                    <a
+
+          <a
             href="https://www.facebook.com/share/1Q4LPHunQt/"
             target="_blank"
             rel="noopener noreferrer"
@@ -107,6 +112,7 @@ const Marquee = () => {
           >
             <FaYoutubeSquare size={20} />
           </a>
+
         </div>
 
         {/* Desktop Right Marquee */}
@@ -120,6 +126,8 @@ const Marquee = () => {
             Express.js &nbsp;&nbsp;&nbsp;&nbsp;
             MongoDB &nbsp;&nbsp;&nbsp;&nbsp;
             Mongoose &nbsp;&nbsp;&nbsp;&nbsp;
+            TypeScript &nbsp;&nbsp;&nbsp;&nbsp;
+            Next.js App Router &nbsp;&nbsp;&nbsp;&nbsp;
             REST API Development
           </marquee>
         </div>
