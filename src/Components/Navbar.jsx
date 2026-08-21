@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { LuSunMoon, LuMenu, LuX } from "react-icons/lu";
+import {
+  LuSunMoon,
+  LuMenu,
+  LuX,
+} from "react-icons/lu";
 import { MdOutlineDarkMode } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setmenu] = useState(false);
@@ -33,13 +36,14 @@ const Navbar = () => {
             : "bg-white shadow-md py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto h-[70px]  flex justify-between items-center px-5 lg:px-10">
-       
+        <div className="max-w-7xl mx-auto h-[70px] flex justify-between items-center px-5 lg:px-10">
+
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <img
               src="/logo.jpg"
-              alt="logo"
-              className="h-[50px] w-[50px] rounded-md"
+              alt="Zar Khan Logo"
+              className="h-[50px] w-[50px] rounded-md object-cover"
             />
 
             <div>
@@ -53,8 +57,9 @@ const Navbar = () => {
             </div>
           </div>
 
-       
+          {/* Desktop Menu */}
           <ul className="hidden lg:flex gap-10">
+
             <li className="font-medium text-[#06B6D4] hover:text-cyan-400 relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-cyan-400 after:duration-300 hover:after:w-full">
               <a href="#home">Home</a>
             </li>
@@ -75,90 +80,131 @@ const Navbar = () => {
               <a href="#projects">Projects</a>
             </li>
 
+            {/* Contact - Same Page */}
             <li className="font-medium text-[#06B6D4] hover:text-cyan-400 relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-cyan-400 after:duration-300 hover:after:w-full">
-              <Link to="/contact">Contact</Link>
+              <a href="#contact">Contact</a>
             </li>
+
           </ul>
 
-        
+          {/* Desktop Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+
             <button
               className="border py-3 px-4 rounded-md text-white bg-[#22D3EE] hover:scale-110 duration-300"
               onClick={() => setmenu(!menu)}
             >
-              {menu ? <MdOutlineDarkMode /> : <LuSunMoon />}
+              {menu ? (
+                <MdOutlineDarkMode />
+              ) : (
+                <LuSunMoon />
+              )}
             </button>
 
             <button className="bg-[#22D3EE] text-white px-8 py-2 rounded-md hover:scale-110 duration-300">
               Resume
             </button>
+
           </div>
 
-         
+          {/* Mobile Menu Button */}
           <button
             className="lg:hidden text-3xl text-cyan-500"
             onClick={() => setMobileMenu(!mobileMenu)}
           >
             {mobileMenu ? <LuX /> : <LuMenu />}
           </button>
+
         </div>
 
-      
+        {/* Mobile Menu */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-500 ${
-            mobileMenu ? "max-h-[500px] py-5" : "max-h-0"
+            mobileMenu
+              ? "max-h-[500px] py-5"
+              : "max-h-0"
           } bg-white shadow-lg`}
         >
+
           <ul className="flex flex-col items-center gap-6">
+
             <li>
-              <a href="#home" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#home"
+                onClick={() => setMobileMenu(false)}
+              >
                 Home
               </a>
             </li>
 
             <li>
-              <a href="#about" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#about"
+                onClick={() => setMobileMenu(false)}
+              >
                 About
               </a>
             </li>
 
             <li>
-              <a href="#skills" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#skills"
+                onClick={() => setMobileMenu(false)}
+              >
                 Skills
               </a>
             </li>
 
             <li>
-              <a href="#services" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#services"
+                onClick={() => setMobileMenu(false)}
+              >
                 Services
               </a>
             </li>
 
             <li>
-              <a href="#projects" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#projects"
+                onClick={() => setMobileMenu(false)}
+              >
                 Projects
               </a>
             </li>
 
+            {/* Contact - Same Page */}
             <li>
-              <Link to="/contact" onClick={() => setMobileMenu(false)}>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenu(false)}
+              >
                 Contact
-              </Link>
+              </a>
             </li>
 
+            {/* Mobile Buttons */}
             <div className="flex gap-3">
+
               <button
                 className="border py-3 px-4 rounded-md text-white bg-[#22D3EE]"
                 onClick={() => setmenu(!menu)}
               >
-                {menu ? <MdOutlineDarkMode /> : <LuSunMoon />}
+                {menu ? (
+                  <MdOutlineDarkMode />
+                ) : (
+                  <LuSunMoon />
+                )}
               </button>
 
               <button className="bg-[#22D3EE] text-white px-8 py-2 rounded-md">
                 Resume
               </button>
+
             </div>
+
           </ul>
+
         </div>
       </div>
     </>

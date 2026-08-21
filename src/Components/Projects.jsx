@@ -72,15 +72,11 @@ const Project = () => {
   return (
     <section
       id="projects"
-      className="relative py-24 bg-[#F5F6F6] overflow-hidden"
+      className="relative overflow-hidden bg-[#FFF7ED] py-24"
     >
-      {/* Background Glow */}
-      <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-cyan-300/20 blur-[160px]" />
 
-      <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full bg-cyan-400/20 blur-[160px]" />
-
-      {/* IMPORTANT: Is div ko yahan close mat karo */}
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* Main Container */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
 
         {/* Heading */}
         <motion.div
@@ -94,140 +90,138 @@ const Project = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center px-6 py-3 rounded-full border border-cyan-400 bg-cyan-50 shadow-lg"
+            className="inline-flex items-center rounded-full border border-cyan-400 bg-cyan-50 px-6 py-3 shadow-lg"
           >
-            <span className="uppercase tracking-[5px] font-bold text-cyan-600">
+            <span className="font-bold uppercase tracking-[5px] text-cyan-600">
               Featured Work
             </span>
           </motion.div>
 
-          <h1 className="mt-8 text-6xl lg:text-6xl font-black text-slate-900">
+          <h1 className="mt-8 text-6xl font-black text-slate-900 lg:text-6xl">
             Latest Projects
           </h1>
 
-          <p className="mt-6 max-w-3xl mx-auto text-slate-600 text-xl leading-9">
+          <p className="mx-auto mt-6 max-w-3xl text-xl leading-9 text-slate-600">
             Premium full stack applications crafted with performance,
             creativity and modern technologies.
           </p>
         </motion.div>
 
-      {/* Cards */}
-{/* Cards */}
+        {/* Cards */}
+        <div className="mt-16 flex flex-wrap justify-center gap-5">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.7,
+                delay: index * 0.15,
+              }}
+              whileHover={{
+                y: -12,
+                scale: 1.02,
+                rotateX: 5,
+                rotateY: -5,
+              }}
+              className="group relative w-[360px] flex-shrink-0 overflow-hidden rounded-[24px] border border-cyan-200 bg-white shadow-xl transition-all duration-700 hover:shadow-[0_20px_60px_rgba(34,211,238,.25)]"
+            >
 
-<div className="flex flex-wrap justify-center gap-5 mt-16">
-  {projects.map((project, index) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.15,
-      }}
-      whileHover={{
-        y: -12,
-        scale: 1.02,
-        rotateX: 5,
-        rotateY: -5,
-      }}
-     className="group relative overflow-hidden rounded-[24px] bg-white border border-cyan-200 shadow-xl hover:shadow-[0_20px_60px_rgba(34,211,238,.25)] transition-all duration-700 w-[360px] flex-shrink-0"
-    >
-      {/* Animated Border */}
-
-      <motion.div
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute inset-0 rounded-[24px] "
-        style={{
-          background:
-            "linear-gradient(135deg,#22D3EE,#67E8F9,#A5F3FC,#22D3EE)",
-          backgroundSize: "300% 300%",
-          padding: "2px",
-        }}
-      />
-
-      <div className="relative z-10 bg-white rounded-[22px]">
-        {/* Image */}
-
-        <div className="overflow-hidden h-48 rounded-t-[22px]">
-          <motion.img
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.6 }}
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Content */}
-
-        <div className="p-5">
-          <span className="inline-block px-3 py-1.5 rounded-md bg-cyan-100 text-cyan-600 text-xs font-semibold">
-            {project.category}
-          </span>
-
-          <h2 className="mt-4 text-2xl font-bold text-slate-900">
-            {project.title}
-          </h2>
-
-          <p className="mt-3 text-sm text-slate-600 leading-6">
-            {project.description}
-          </p>
-
-          {/* Tech Stack */}
-
-          <div className="flex gap-2 mt-5 flex-wrap">
-            {project.tech.map((icon, i) => (
+              {/* Animated Border */}
               <motion.div
-                key={i}
-                whileHover={{
-                  rotate: 360,
-                  scale: 1.15,
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                 }}
-                transition={{ duration: 0.5 }}
-                className="w-9 h-9 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-lg shadow-md"
-              >
-                {icon}
-              </motion.div>
-            ))}
-          </div>
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-0 rounded-[24px]"
+                style={{
+                  background:
+                    "linear-gradient(135deg,#22D3EE,#67E8F9,#A5F3FC,#22D3EE)",
+                  backgroundSize: "300% 300%",
+                  padding: "2px",
+                }}
+              />
 
-          {/* Buttons */}
+              <div className="relative z-10 rounded-[22px] bg-white">
 
-          <div className="flex gap-3 mt-6">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              href={project.live}
-              className="flex-1 py-2.5 rounded-lg bg-cyan-500 text-white flex items-center justify-center gap-2 font-semibold text-sm"
-            >
-              Live Demo
-              <FaExternalLinkAlt />
-            </motion.a>
+                {/* Image */}
+                <div className="h-48 overflow-hidden rounded-t-[22px]">
+                  <motion.img
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.6 }}
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
 
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              href={project.github}
-              className="w-11 rounded-lg border border-cyan-300 bg-white flex items-center justify-center text-cyan-600"
-            >
-              <FaGithub />
-            </motion.a>
-          </div>
+                {/* Content */}
+                <div className="p-5">
+
+                  <span className="inline-block rounded-md bg-cyan-100 px-3 py-1.5 text-xs font-semibold text-cyan-600">
+                    {project.category}
+                  </span>
+
+                  <h2 className="mt-4 text-2xl font-bold text-slate-900">
+                    {project.title}
+                  </h2>
+
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.tech.map((icon, i) => (
+                      <motion.div
+                        key={i}
+                        whileHover={{
+                          rotate: 360,
+                          scale: 1.15,
+                        }}
+                        transition={{ duration: 0.5 }}
+                        className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-50 text-lg text-cyan-600 shadow-md"
+                      >
+                        {icon}
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="mt-6 flex gap-3">
+
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      href={project.live}
+                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-cyan-500 py-2.5 text-sm font-semibold text-white"
+                    >
+                      Live Demo
+                      <FaExternalLinkAlt />
+                    </motion.a>
+
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      href={project.github}
+                      className="flex w-11 items-center justify-center rounded-lg border border-cyan-300 bg-white text-cyan-600"
+                    >
+                      <FaGithub />
+                    </motion.a>
+
+                  </div>
+                </div>
+
+                {/* Card Hover Glow */}
+                <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-cyan-300/20 opacity-0 blur-3xl transition-all duration-700 group-hover:opacity-100" />
+
+              </div>
+            </motion.div>
+          ))}
         </div>
-
-        {/* Glow */}
-
-        <div className="absolute -right-16 -bottom-16 w-40 h-40 rounded-full bg-cyan-300/20 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-      </div>
-    </motion.div>
-  ))}
-</div>
 
       </div>
     </section>

@@ -19,7 +19,7 @@ const Footer = () => {
       style={{
         backgroundImage: `
         linear-gradient(rgba(6,23,48,.88),rgba(6,23,48,.92)),
-        url("https://www.shutterstock.com/image-vector/header-footer-purple-violet-curve-260nw-2492464759.jpg")
+        url("")
       `,
         backgroundSize: "cover",
         backgroundPosition: "center",

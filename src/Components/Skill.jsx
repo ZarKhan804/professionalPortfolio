@@ -5,8 +5,6 @@ import {
   FaReact,
   FaNodeJs,
   FaGithub,
-  FaHtml5,
-  FaCss3Alt,
   FaGitAlt,
 } from "react-icons/fa";
 
@@ -80,18 +78,6 @@ const skills = [
     color: "#FFFFFF",
     value: 93,
   },
-  {
-    name: "HTML5",
-    icon: <FaHtml5 />,
-    color: "#FF5722",
-    value: 98,
-  },
-  {
-    name: "CSS3",
-    icon: <FaCss3Alt />,
-    color: "#2196F3",
-    value: 97,
-  },
 ];
 
 const Skill = () => {
@@ -108,14 +94,18 @@ const Skill = () => {
     });
   };
 
+  // Perfect circle calculation
+  const radius = 68;
+  const circumference = 2 * Math.PI * radius;
+
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-b from-white via-cyan-50 to-white"
+      className="py-20 bg-[#FFF7ED]"
     >
       <div className="max-w-[1600px] mx-auto px-6">
 
-        {/* Heading */}
+        {/* ================= HEADING ================= */}
         <div className="text-center">
 
           <h1 className="text-6xl font-bold text-cyan-500">
@@ -126,19 +116,24 @@ const Skill = () => {
             Browse portfolio skills designs for inspiration
           </p>
 
-          {/* Skill Buttons */}
+          {/* ================= SKILL BUTTONS ================= */}
           <div className="mt-12 flex justify-center flex-wrap gap-4">
 
             {skills.map((skill, index) => (
-
               <motion.button
                 key={index}
                 onClick={() => handleSkillClick(skill.name)}
-                whileHover={{ scale: 1.08, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-7 py-3 rounded-xl text-lg font-semibold transition-all duration-300 border shadow-lg
 
-                ${
+                whileHover={{
+                  scale: 1.08,
+                  y: -5,
+                }}
+
+                whileTap={{
+                  scale: 0.95,
+                }}
+
+                className={`px-7 py-3 rounded-xl text-lg font-semibold transition-all duration-300 border shadow-lg ${
                   activeSkill === skill.name
                     ? "bg-cyan-500 text-white border-cyan-500"
                     : "bg-white text-[#0B1120] border-cyan-200 hover:bg-cyan-500 hover:text-white"
@@ -146,21 +141,21 @@ const Skill = () => {
               >
                 {skill.name}
               </motion.button>
-
             ))}
 
           </div>
-
         </div>
 
-        {/* Skill Cards */}
+        {/* ================= SKILL CARDS ================= */}
         <div className="mt-20 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
 
           {skills.map((skill, index) => (
-
             <motion.div
               key={index}
-              ref={(el) => (cardRefs.current[skill.name] = el)}
+
+              ref={(el) => {
+                cardRefs.current[skill.name] = el;
+              }}
 
               initial={{
                 opacity: 0,
@@ -181,10 +176,10 @@ const Skill = () => {
                 delay: index * 0.08,
               }}
 
+            
               whileHover={{
                 scale: 1.05,
-                rotateX: 10,
-                rotateY: -10,
+                y: -12,
               }}
 
               animate={
@@ -199,110 +194,143 @@ const Skill = () => {
                     }
               }
 
-              className={`relative overflow-hidden rounded-3xl p-8 group shadow-2xl transition-all duration-500
-
-              ${
+              className={`relative overflow-hidden rounded-3xl p-8 group shadow-2xl transition-all duration-500 ${
                 activeSkill === skill.name
                   ? "bg-[#071221] border-2 border-cyan-400 shadow-cyan-400/50"
                   : "bg-[#0B1120] border border-cyan-400/20"
               }`}
             >
 
-              {/* Glow Effect */}
+              {/* ================= GLOW EFFECT ================= */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500 pointer-events-none"
                 style={{
                   background: `radial-gradient(circle at center, ${skill.color}33, transparent 70%)`,
                 }}
               />
 
-              {/* Active Badge */}
+              {/* ================= ACTIVE BADGE ================= */}
               {activeSkill === skill.name && (
                 <div className="absolute top-4 right-4 bg-cyan-500 text-white text-xs px-3 py-1 rounded-full">
                   Active
                 </div>
               )}
 
-              {/* Circular Progress */}
-              <div className="relative flex justify-center">
+              {/* ================= CIRCLE ================= */}
+              <div className="relative flex justify-center items-center">
 
-                <svg width="170" height="170">
+                <svg
+                  width="170"
+                  height="170"
+                  viewBox="0 0 170 170"
+                  className="block"
+                >
 
+                  {/* Background Circle */}
                   <circle
                     cx="85"
                     cy="85"
-                    r="68"
+                    r={radius}
                     stroke="#1E293B"
                     strokeWidth="10"
                     fill="none"
                   />
 
+                  {/* Progress Circle */}
                   <motion.circle
                     cx="85"
                     cy="85"
-                    r="68"
+                    r={radius}
                     stroke={skill.color}
                     strokeWidth="10"
                     fill="none"
-                    strokeLinecap="square"
-                    strokeDasharray="427"
+                    strokeLinecap="round"
+
+                    strokeDasharray={circumference}
 
                     initial={{
-                      strokeDashoffset: 427,
+                      strokeDashoffset: circumference,
                     }}
 
                     whileInView={{
                       strokeDashoffset:
-                        427 - (427 * skill.value) / 100,
+                        circumference -
+                        (circumference * skill.value) / 100,
+                    }}
+
+                    viewport={{
+                      once: true,
                     }}
 
                     transition={{
                       duration: 2,
+                      ease: "easeOut",
                     }}
 
                     style={{
                       transform: "rotate(-90deg)",
-                      transformOrigin: "50% 50%",
+                      transformOrigin: "85px 85px",
                     }}
                   />
 
                 </svg>
 
-                {/* Skill Icon */}
-                <motion.div
-                  className="absolute top-14 text-6xl"
-                  style={{
-                    color: skill.color,
-                  }}
-
-                  animate={
-                    activeSkill === skill.name
-                      ? {
-                          scale: [1, 1.15, 1],
-                          rotate: [0, 8, -8, 0],
-                        }
-                      : {}
-                  }
-
-                  transition={{
-                    duration: 1.2,
-                    repeat:
-                      activeSkill === skill.name
-                        ? Infinity
-                        : 0,
-                  }}
+                {/* ================= PERFECTLY CENTERED ICON ================= */}
+                <div
+                  className="
+                    absolute
+                    left-1/2
+                    top-1/2
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    w-20
+                    h-20
+                    flex
+                    items-center
+                    justify-center
+                    z-10
+                  "
                 >
-                  {skill.icon}
-                </motion.div>
+
+                  <motion.div
+                    className="flex items-center justify-center text-6xl leading-none"
+
+                    style={{
+                      color: skill.color,
+                    }}
+
+                    animate={
+                      activeSkill === skill.name
+                        ? {
+                            scale: [1, 1.12, 1],
+                          }
+                        : {
+                            scale: 1,
+                          }
+                    }
+
+                    transition={{
+                      duration: 1.2,
+                      repeat:
+                        activeSkill === skill.name
+                          ? Infinity
+                          : 0,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    {skill.icon}
+                  </motion.div>
+
+                </div>
 
               </div>
 
-              {/* Skill Name */}
+              {/* ================= SKILL NAME ================= */}
               <h2 className="mt-6 text-center text-white text-2xl font-bold">
                 {skill.name}
               </h2>
 
-              {/* Percentage */}
+              {/* ================= PERCENTAGE ================= */}
               <p
                 className="mt-3 text-center text-xl font-semibold"
                 style={{
@@ -312,7 +340,7 @@ const Skill = () => {
                 {skill.value}%
               </p>
 
-              {/* Progress Bar */}
+              {/* ================= PROGRESS BAR ================= */}
               <div className="mt-6 h-2 w-full rounded-full bg-slate-700 overflow-hidden">
 
                 <motion.div
@@ -324,8 +352,13 @@ const Skill = () => {
                     width: `${skill.value}%`,
                   }}
 
+                  viewport={{
+                    once: true,
+                  }}
+
                   transition={{
                     duration: 1.5,
+                    ease: "easeOut",
                   }}
 
                   className="h-full rounded-full"
@@ -338,7 +371,6 @@ const Skill = () => {
               </div>
 
             </motion.div>
-
           ))}
 
         </div>

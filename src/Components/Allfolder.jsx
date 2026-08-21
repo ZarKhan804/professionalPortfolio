@@ -6,6 +6,7 @@ import About from "./About";
 import Skill from "./Skill";
 import Services from "./Services";
 import Projects from "./Projects";
+import Contact from "./Contact";
 import Footer from "./Footer";
 
 const Allfolder = () => {
@@ -18,6 +19,7 @@ const Allfolder = () => {
       <Skill />
       <Services/>
       <Projects/>
+      <Contact /> 
       <Footer/>
     </>
   );

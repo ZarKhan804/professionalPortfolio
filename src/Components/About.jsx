@@ -49,7 +49,7 @@ const About = () => {
 
 
     
-    <section  id="about" className="bg-[#F1F3F4] py-10">
+    <section  id="about" className="bg-[#FFF7ED] py-10">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
       
         <div className="text-center">
